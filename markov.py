@@ -45,6 +45,15 @@ def make_chains(text_string):
 
     # your code goes here
 
+    words = text_string.split()
+
+    for i in range(len(words) - 2):
+    	if tuple([words[i], words[i + 1]]) in chains:
+    		# by indexing into the key of the list we get the value which is a list, then we can append to that list
+    		chains[tuple([words[i], words[i + 1]])].append(words[i +2])
+    	else:
+    		chains[tuple([words[i], words[i + 1]])] = [words[i + 2]]
+
     return chains
 
 
@@ -53,9 +62,23 @@ def make_text(chains):
 
     words = []
 
+	random_key = choice(list(chains.keys()))
+	random_value = choice(list(chains[random_key]))
+	words.extend([random_key[0],random_key[1], random_value])  	
+
+
+    while True:
+    	# random_value = choice(list(chains[random_key]))
+
+    	# words.extend([random_key[0],random_key[1], random_value])
+
+    	break
+
+
+    print(words)
     # your code goes here
 
-    return " ".join(words)
+    # return " ".join(words)
 
 
 input_path = "green-eggs.txt"
