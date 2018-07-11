@@ -49,11 +49,12 @@ def make_chains(text_string):
     words = text_string.split()
 
     for i in range(len(words) - 2):
-    	if tuple([words[i], words[i + 1]]) in chains:
-    		# by indexing into the key of the list we get the value which is a list, then we can append to that list
-    		chains[tuple([words[i], words[i + 1]])].append(words[i +2])
-    	else:
-    		chains[tuple([words[i], words[i + 1]])] = [words[i + 2]]
+        current_key = tuple([words[i], words[i + 1]])
+        if current_key in chains:
+            # by indexing into the key of the list we get the value which is a list, then we can append to that list
+            chains[current_key].append(words[i +2])
+        else:
+            chains[current_key] = [words[i + 2]]
 
     return chains
 
