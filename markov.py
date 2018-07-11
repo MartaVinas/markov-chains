@@ -58,27 +58,24 @@ def make_chains(text_string):
 
 
 def make_text(chains):
-    """Return text from chains."""
+	"""Return text from chains."""
 
-    words = []
+	words = []
 
 	random_key = choice(list(chains.keys()))
-	random_value = choice(list(chains[random_key]))
-	words.extend([random_key[0],random_key[1], random_value])  	
+	random_value = choice(chains[random_key])
+	words.extend([random_key[0],random_key[1], random_value])
 
+	while True:
+		new_key = tuple((words[-2], words[-1]))
 
-    while True:
-    	# random_value = choice(list(chains[random_key]))
+		if new_key in chains:
+			new_value = choice(chains[new_key])
+			words.append(new_value)
+		else:
+			break
 
-    	# words.extend([random_key[0],random_key[1], random_value])
-
-    	break
-
-
-    print(words)
-    # your code goes here
-
-    # return " ".join(words)
+	return " ".join(words)
 
 
 input_path = "green-eggs.txt"
